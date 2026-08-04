@@ -1,0 +1,6 @@
+@personal_health_passport_HostAddress = http://localhost:5282
+
+GET {{personal_health_passport_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

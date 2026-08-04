@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|c:\\users\\amara\\documents\\personal-health-passport\\personal-health-passport\\models\\medicalentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|solutionrelative:models\\medicalentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 233,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MedicalEntity.cs",
+              "DocumentMoniker": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\MedicalEntity.cs",
+              "RelativeDocumentMoniker": "Models\\MedicalEntity.cs",
+              "ToolTip": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\MedicalEntity.cs",
+              "RelativeToolTip": "Models\\MedicalEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T18:31:51.3Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
