@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|c:\\users\\amara\\documents\\personal-health-passport\\personal-health-passport\\controllers\\clinicalentitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|solutionrelative:controllers\\clinicalentitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|c:\\users\\amara\\documents\\personal-health-passport\\personal-health-passport\\models\\clinicaltextrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|solutionrelative:models\\clinicaltextrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|c:\\users\\amara\\documents\\personal-health-passport\\personal-health-passport\\models\\clinicalentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|solutionrelative:models\\clinicalentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|c:\\users\\amara\\documents\\personal-health-passport\\personal-health-passport\\models\\clinicaltextresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|solutionrelative:models\\clinicaltextresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|c:\\users\\amara\\documents\\personal-health-passport\\personal-health-passport\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1C8355C-1DF7-4CDA-87DF-7AF13EC7AD67}|personal-health-passport.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClinicalTextRequest.cs",
+              "DocumentMoniker": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\ClinicalTextRequest.cs",
+              "RelativeDocumentMoniker": "Models\\ClinicalTextRequest.cs",
+              "ToolTip": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\ClinicalTextRequest.cs",
+              "RelativeToolTip": "Models\\ClinicalTextRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T21:50:39.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T21:37:40.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClinicalEntityController.cs",
+              "DocumentMoniker": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Controllers\\ClinicalEntityController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClinicalEntityController.cs",
+              "ToolTip": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Controllers\\ClinicalEntityController.cs",
+              "RelativeToolTip": "Controllers\\ClinicalEntityController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T21:23:27.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClinicalTextResponse.cs",
+              "DocumentMoniker": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\ClinicalTextResponse.cs",
+              "RelativeDocumentMoniker": "Models\\ClinicalTextResponse.cs",
+              "ToolTip": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\ClinicalTextResponse.cs",
+              "RelativeToolTip": "Models\\ClinicalTextResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T21:15:02.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClinicalEntity.cs",
+              "DocumentMoniker": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\ClinicalEntity.cs",
+              "RelativeDocumentMoniker": "Models\\ClinicalEntity.cs",
+              "ToolTip": "C:\\Users\\amara\\Documents\\personal-health-passport\\personal-health-passport\\Models\\ClinicalEntity.cs",
+              "RelativeToolTip": "Models\\ClinicalEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T02:48:11.095Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

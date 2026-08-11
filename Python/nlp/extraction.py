@@ -1,6 +1,6 @@
-from wordset import *
-from helper_functions import *
-from linking import get_entity_info, find_umls_entity_for_token, find_umls_entity_by_text
+from nlp.wordset import *
+from nlp.helper_functions import *
+from nlp.linking import *
 
 def extract_no_evidence_relationships(doc):
     relationships = []

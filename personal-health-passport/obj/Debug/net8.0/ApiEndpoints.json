@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "personal_health_passport.Controllers.ClinicalEntityController",
+    "Method": "GenerateEntities",
+    "RelativePath": "nlp/entity",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "text",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,4 +1,7 @@
 import spacy
+import scispacy
+from scispacy.linking import EntityLinker
+from scispacy.abbreviation import AbbreviationDetector
 
 nlp = spacy.load("en_core_sci_sm")
 nlp.add_pipe("abbreviation_detector")

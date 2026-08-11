@@ -1,11 +1,11 @@
 
 import csv
-from models import nlp
-from wordset import status_entity_lemmas, note_headings, allowed_semantic_codes
+from nlp.models import nlp
+from nlp.wordset import *
 
 semantic_types = {}
 
-with open("semantic_types.csv", newline="", encoding="utf-8") as f:
+with open("nlp/semantic_types.csv", newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         semantic_types[row["code"]] = row

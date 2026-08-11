@@ -1,4 +1,4 @@
-from wordset import *
+from nlp.wordset import *
 
 def check_negation(token):
     nodes = [token, *list(token.ancestors)]
