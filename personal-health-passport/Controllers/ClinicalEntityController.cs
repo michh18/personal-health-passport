@@ -28,6 +28,7 @@ namespace personal_health_passport.Controllers
                     request
                 );
 
+
                 if (!response.IsSuccessStatusCode)
                 {
                     return StatusCode(

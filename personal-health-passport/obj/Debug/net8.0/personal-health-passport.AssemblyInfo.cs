@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("personal-health-passport")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a37109175dc9c91378831b2f6b21ae9a7dfbcda")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba37bbfa71c55517a80f23b153dd957cbf22fa3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("personal-health-passport")]
 [assembly: System.Reflection.AssemblyTitleAttribute("personal-health-passport")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

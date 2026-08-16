@@ -2,7 +2,7 @@
 {
     public class ClinicalEntity
     {
-        public int Id { get; set; }    
+        public int Id { get; set; }
         public string Guid { get; set; }
         public string? Entity { get; set; } = string.Empty;
         public string? Trigger { get; set; } = string.Empty;

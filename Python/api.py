@@ -26,7 +26,9 @@ class ClinicalRelationship(BaseModel):
 
 class ClinicalTextResponse(BaseModel):
     text: str
-    relationships: list[ClinicalRelationship]
+    entities: list[ClinicalRelationship]
+
+
 
 
 @app.post("/clinical-text", response_model=ClinicalTextResponse)
@@ -36,7 +38,12 @@ def process_clinical_text(request: ClinicalTextRequest):
 
     relationships = extract_linked_relationships(doc)
 
+    print(doc.text)
+
+    for relationship in relationships:
+        print(relationship)
+
     return ClinicalTextResponse(
         text=request.text,
-        relationships=relationships
-    )
+        entities=relationships
+    )               

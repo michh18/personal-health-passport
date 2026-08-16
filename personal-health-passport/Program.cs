@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped(sp =>
     new HttpClient
     {
-        BaseAddress = new Uri("https://localhost:5171")
+        BaseAddress = new Uri("https://localhost:7286")
     });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
