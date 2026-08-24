@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using personal_health_passport;
+using personal_health_passport.Repositories;
+using personal_health_passport.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IClinicalEntityRepo, ClinicalEntityRepo>();
+builder.Services.AddScoped<IClinicalEntityService, ClinicalEntityService>();
 
 
 builder.Services.AddScoped(sp =>
@@ -18,9 +23,9 @@ builder.Services.AddScoped(sp =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDbContext<ClinicalDbContext>(options =>
-//        options.UseSqlServer(
-//            builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ClinicalDbContext>(options =>
+        options.UseSqlServer(
+            builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddHttpClient();
 

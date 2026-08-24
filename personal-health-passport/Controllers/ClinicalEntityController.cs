@@ -1,22 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using personal_health_passport.Models;
+using personal_health_passport.Services;
 using System.Net.Http;
 
 namespace personal_health_passport.Controllers
 {
-    [Route("nlp/entity")]
+    [Route("nlp")]
     [ApiController]
     public class ClinicalEntityController : Controller
     {
         private readonly HttpClient Http;
+        private readonly IClinicalEntityService _entityService;
 
-        public ClinicalEntityController(HttpClient http)
+        public ClinicalEntityController(HttpClient http, IClinicalEntityService entityService)
         {
-
+            _entityService = entityService;
             Http = http;
         }
 
-        [HttpPost]
+        [HttpPost("generate")]
         public async Task<IActionResult> GenerateEntities([FromBody] string text)
         {
             try
@@ -45,7 +47,15 @@ namespace personal_health_passport.Controllers
                     return BadRequest("The NLP service returned an empty response.");
                 }
 
-                return Ok(result);
+                if (_entityService.AddEntitiesToDb(result))
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest("NLP entries could not be entered into database.");
+                }
+
             }
             catch (HttpRequestException)
             {
@@ -55,5 +65,7 @@ namespace personal_health_passport.Controllers
                 );
             }
         }
+
+       
     }
 }
