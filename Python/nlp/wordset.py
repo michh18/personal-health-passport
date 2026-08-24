@@ -1,4 +1,4 @@
-allowed_semantic_codes = {
+allowed_semantic_codes = [
     # Disorders, findings and symptoms
     "T019", "T020", "T033", "T037",
     "T046", "T047", "T048", "T049",
@@ -15,7 +15,7 @@ allowed_semantic_codes = {
     
     # Procedures
     "T059", "T060", "T061"
-}
+]
 
 negation_lemmas = {
     "deny",

@@ -182,7 +182,7 @@ def extract_linked_relationships(doc):
 
         result["cui"] = (linked["cui"] if linked else None)
         result["canonical"] = (linked["canonical"] if linked else None)
-        result["semantic_codes"] = (linked["semantic_codes"] if linked else [])
+        result["semanticCodes"] = (semantic_codes_to_bitmask(linked["semanticCodes"]) if linked else 0)
 
         results.append(result)
 

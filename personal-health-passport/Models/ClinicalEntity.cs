@@ -1,4 +1,6 @@
-﻿namespace personal_health_passport.Models
+﻿using System.Collections;
+
+namespace personal_health_passport.Models
 {
     public class ClinicalEntity
     {
@@ -11,7 +13,7 @@
         public string? Action { get; set; }
         public string? Cui { get; set; } = string.Empty;
         public string? Canonical { get; set; } = string.Empty;
-        public List<string> SemanticCodes { get; set; } = new();
+        public int SemanticCodes { get; set; }
 
 
 

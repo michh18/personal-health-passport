@@ -66,7 +66,7 @@ def get_entity_info(doc, minimum_score=0.80):
                 "cui": cui,
                 "score": float(score),
                 "concept": concept,
-                "semantic_codes": allowed_codes,
+                "semanticCodes": allowed_codes,
             }
             
             break
@@ -83,8 +83,8 @@ def get_entity_info(doc, minimum_score=0.80):
             "normalised": normalised_text,
             "canonical": concept.canonical_name,
             "cui": selected_candidate["cui"],
-            "semantic_codes": selected_candidate["semantic_codes"],
-            "semantic_types": [get_semantic_class(code) for code in selected_candidate["semantic_codes"]],
+            "semanticCodes": selected_candidate["semanticCodes"],
+            "semanticTypes": [get_semantic_class(code) for code in selected_candidate["semanticCodes"]],
             "score": selected_candidate["score"],
             "start": entity.start_char,
             "end": entity.end_char,

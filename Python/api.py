@@ -21,7 +21,7 @@ class ClinicalRelationship(BaseModel):
     action: Optional[str] = None
     cui: Optional[str] = None
     canonical: Optional[str] = None
-    semantic_codes: list[str] = []
+    semanticCodes: Optional[int] = 0
 
 
 class ClinicalTextResponse(BaseModel):

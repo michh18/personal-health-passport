@@ -146,3 +146,12 @@ def find_umls_entity_by_text(relationship_text, linked_entities):
         return None
 
     return max(matches, key=lambda entity: entity["score"])
+
+def semantic_codes_to_bitmask(codes):
+    bitmask = 0
+
+    for index, semantic_code in enumerate(allowed_semantic_codes):
+        if semantic_code in codes:
+            bitmask |= (1 << index)
+
+    return bitmask
