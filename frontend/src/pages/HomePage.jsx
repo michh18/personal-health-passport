@@ -8,6 +8,7 @@ function HomePage() {
 
         <nav>
           <a href="#how-it-works">How it works</a>
+          <a href="/upload">Upload Notes</a>
           <button className="login-button">Log in</button>
           <button className="register-button">Register</button>
         </nav>
