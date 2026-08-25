@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-const API_BASE_URL = 'https://localhost:5282';
+const API_BASE_URL = 'https://localhost:7226';
 
 function App() {
   const [mytxt, setMytxt] = useState("");
