@@ -1,4 +1,6 @@
-﻿namespace personal_health_passport.Models
+﻿using personal_health_passport.Models;
+
+namespace personal_health_passport.DTOs
 {
     public class ClinicalTextResponse
     {

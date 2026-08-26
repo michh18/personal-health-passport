@@ -1,4 +1,4 @@
-﻿namespace personal_health_passport.Models
+﻿namespace personal_health_passport.DTOs
 {
     public class ClinicalTextRequest
     {

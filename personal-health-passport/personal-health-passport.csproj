@@ -1,13 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>personal_health_passport</RootNamespace>
+    <UserSecretsId>56cff7ea-3703-4020-ace9-f5fa9427ca50</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.30" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.19">
       <PrivateAssets>all</PrivateAssets>
