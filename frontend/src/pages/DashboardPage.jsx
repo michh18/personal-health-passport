@@ -56,7 +56,7 @@ function DashboardPage() {
                 </div>
 
                 <button className="upload-notes-button">
-                Upload clinical notes
+                    Upload clinical notes
                 </button>
             </section>
 
@@ -66,15 +66,15 @@ function DashboardPage() {
                 <div className="summary-grid">
                     {summaryItems.map((item) => (
                         <article className="summary-card" key={item.id}>
-                        <p className="summary-card-title">{item.title}</p>
-                        <p className="summary-card-value">{item.value}</p>
-                        <button className="summary-card-link">
-                            View details
-                        </button>
+                            <p className="summary-card-title">{item.title}</p>
+                            <p className="summary-card-value">{item.value}</p>
+                            <button className="summary-card-link">
+                                View details
+                            </button>
                         </article>
                     ))}
                 </div>
-            </section> 
+            </section>
 
             <section className="result" aria-live="polite">
                 <h2>Recent clinical notes:</h2>
@@ -91,26 +91,26 @@ function DashboardPage() {
 
                         <tbody>
                             {recentNotes.map((note) => (
-                            <tr key={note.id}>
-                                <td>{note.title}</td>
-                                <td>{note.uploadDate}</td>
-                                <td>
-                                    <span
-                                        className={
-                                        note.status === "Reviewed"
-                                            ? "status status-reviewed"
-                                            : "status status-needs-review"
-                                        }
-                                    >
-                                        {note.status}
-                                    </span>
-                                </td>
-                                <td>
-                                    <button className="view-note-button">
-                                        {note.status === "Reviewed" ? "View" : "Review"}
-                                    </button>
-                                </td>
-                            </tr>
+                                <tr key={note.id}>
+                                    <td>{note.title}</td>
+                                    <td>{note.uploadDate}</td>
+                                    <td>
+                                        <span
+                                            className={
+                                                note.status === "Reviewed"
+                                                    ? "status status-reviewed"
+                                                    : "status status-needs-review"
+                                            }
+                                        >
+                                            {note.status}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button className="view-note-button">
+                                            {note.status === "Reviewed" ? "View" : "Review"}
+                                        </button>
+                                    </td>
+                                </tr>
                             ))}
                         </tbody>
                     </table>
