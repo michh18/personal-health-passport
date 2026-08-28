@@ -25,6 +25,27 @@ function DashboardPage() {
         },
     ];
 
+    const recentNotes = [
+        {
+            id: 1,
+            title: "Renal clinic letter",
+            uploadDate: "25 August 2026",
+            status: "Reviewed",
+        },
+        {
+            id: 2,
+            title: "GP appointment notes",
+            uploadDate: "20 August 2026",
+            status: "Needs review",
+        },
+        {
+            id: 3,
+            title: "Hospital discharge summary",
+            uploadDate: "14 August 2026",
+            status: "Reviewed",
+        },
+    ];
+
     return (
         <main className="dashboard-page">
             <section className="dashboard-heading">
@@ -54,6 +75,47 @@ function DashboardPage() {
                     ))}
                 </div>
             </section> 
+
+            <section className="result" aria-live="polite">
+                <h2>Recent clinical notes:</h2>
+                <div className="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Clinical Note</th>
+                                <th>Upload Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {recentNotes.map((note) => (
+                            <tr key={note.id}>
+                                <td>{note.title}</td>
+                                <td>{note.uploadDate}</td>
+                                <td>
+                                    <span
+                                        className={
+                                        note.status === "Reviewed"
+                                            ? "status status-reviewed"
+                                            : "status status-needs-review"
+                                        }
+                                    >
+                                        {note.status}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button className="view-note-button">
+                                        {note.status === "Reviewed" ? "View" : "Review"}
+                                    </button>
+                                </td>
+                            </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </main>
     );
 }
