@@ -47,7 +47,32 @@ function DashboardPage() {
     ];
 
     return (
-        <main className="dashboard-page">
+        <div className="dashboard-layout">
+        <nav className="dashboard-sidebar" aria-label="Dashboard navigation">
+            <h2 className="sidebar-logo">Personal Health Passport</h2>
+
+            <ul className="sidebar-links">
+                <li>
+                    <a href="/dashboard" className="active">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/upload">Upload notes</a>
+                </li>
+                <li>
+                    <a href="/summaries">Summaries</a>
+                </li>
+                <li>
+                    <a href="/health-record">Health record</a>
+                </li>
+            </ul>
+
+            <a href="/" className="sidebar-logout">
+                Log out
+            </a>
+        </nav>
+        <main className="dashboard-main">
             <section className="dashboard-heading">
                 <div>
                     <p className="dashboard-eyebrow">Patient dashboard</p>
@@ -112,22 +137,8 @@ function DashboardPage() {
                     </table>
                 </div>
             </section>
-
-            <section className="quick-actions">
-                <h2>Quick actions</h2>
-                <div className="quick-actions-buttons">
-                    <button type="button" className="quick-action-button">
-                        Upload clinical notes
-                    </button>
-                    <button type="button" className="quick-action-button">
-                        Review extracted summaries
-                    </button>
-                    <button type="button" className="quick-action-button">
-                        View health record
-                    </button>
-                </div>
-            </section>
         </main>
+        </div>
     );
 }
 
