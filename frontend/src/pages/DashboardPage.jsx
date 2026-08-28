@@ -1,5 +1,6 @@
 import "./DashboardPage.css";
-import '../App.css';
+import '../styles/AuthenticatedPages.css';
+import DashboardNav from "../components/DashboardNav";
 
 function DashboardPage() {
     const summaryItems = [
@@ -47,100 +48,74 @@ function DashboardPage() {
     ];
 
     return (
-        <div className="dashboard-layout">
-        <nav className="dashboard-sidebar" aria-label="Dashboard navigation">
-            <h2 className="sidebar-logo">Personal Health Passport</h2>
+        <div className="authenticated-layout">
+            <DashboardNav />
+            <main className="authenticated-main dashboard-main">
+                <section className="dashboard-heading">
+                    <div>
+                        <p className="dashboard-eyebrow">Patient dashboard</p>
+                        <h1>Welcome back</h1>
+                        <p>Here is an overview of your health information.</p>
+                    </div>
+                </section>
 
-            <ul className="sidebar-links">
-                <li>
-                    <a href="/dashboard" className="active">
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="/upload">Upload notes</a>
-                </li>
-                <li>
-                    <a href="/summaries">Summaries</a>
-                </li>
-                <li>
-                    <a href="/health-record">Health record</a>
-                </li>
-                <li>
-                    <a href="/profile">Profile</a>
-                </li>
-            </ul>
+                <section className="summary-section">
+                    <h2>Health summary</h2>
 
-            <a href="/" className="sidebar-logout">
-                Log out
-            </a>
-        </nav>
-        <main className="dashboard-main">
-            <section className="dashboard-heading">
-                <div>
-                    <p className="dashboard-eyebrow">Patient dashboard</p>
-                    <h1>Welcome back</h1>
-                    <p>Here is an overview of your health information.</p>
-                </div>
-            </section>
+                    <div className="summary-grid">
+                        {summaryItems.map((item) => (
+                            <article className="summary-card" key={item.id}>
+                                <p className="summary-card-title">{item.title}</p>
+                                <p className="summary-card-value">{item.value}</p>
+                                <button className="summary-card-link">
+                                    View details
+                                </button>
+                            </article>
+                        ))}
+                    </div>
+                </section>
 
-            <section className="summary-section">
-                <h2>Health summary</h2>
-
-                <div className="summary-grid">
-                    {summaryItems.map((item) => (
-                        <article className="summary-card" key={item.id}>
-                            <p className="summary-card-title">{item.title}</p>
-                            <p className="summary-card-value">{item.value}</p>
-                            <button className="summary-card-link">
-                                View details
-                            </button>
-                        </article>
-                    ))}
-                </div>
-            </section>
-
-            <section className="result" aria-live="polite">
-                <h2>Recent clinical notes:</h2>
-                <div className="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Clinical Note</th>
-                                <th>Upload Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {recentNotes.map((note) => (
-                                <tr key={note.id}>
-                                    <td>{note.title}</td>
-                                    <td>{note.uploadDate}</td>
-                                    <td>
-                                        <span
-                                            className={
-                                                note.status === "Reviewed"
-                                                    ? "status status-reviewed"
-                                                    : "status status-needs-review"
-                                            }
-                                        >
-                                            {note.status}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button className="view-note-button">
-                                            {note.status === "Reviewed" ? "View" : "Review"}
-                                        </button>
-                                    </td>
+                <section className="recent-notes-section" aria-live="polite">
+                    <h2>Recent clinical notes:</h2>
+                    <div className="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Clinical Note</th>
+                                    <th>Upload Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
+                            </thead>
+
+                            <tbody>
+                                {recentNotes.map((note) => (
+                                    <tr key={note.id}>
+                                        <td>{note.title}</td>
+                                        <td>{note.uploadDate}</td>
+                                        <td>
+                                            <span
+                                                className={
+                                                    note.status === "Reviewed"
+                                                        ? "status status-reviewed"
+                                                        : "status status-needs-review"
+                                                }
+                                            >
+                                                {note.status}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button className="view-note-button">
+                                                {note.status === "Reviewed" ? "View" : "Review"}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
         </div>
     );
 }
