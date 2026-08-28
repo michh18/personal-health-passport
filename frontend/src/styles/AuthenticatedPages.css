@@ -1,0 +1,23 @@
+.authenticated-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f6f9fa;
+}
+
+.authenticated-main {
+    flex: 1;
+    min-width: 0;
+    padding: 48px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .authenticated-layout {
+        flex-direction: column;
+    }
+
+    .authenticated-main {
+        padding: 24px 16px;
+    }
+}

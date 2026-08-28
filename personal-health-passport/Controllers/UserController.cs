@@ -2,6 +2,8 @@
 using global::personal_health_passport.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using personal_health_passport.DTOs;
+using System.Security.Claims;
 
 namespace personal_health_passport.Controllers
 { 
@@ -17,6 +19,16 @@ namespace personal_health_passport.Controllers
             _userService = userService;
         }
 
+        private string? GetLoggedInUserId()
+        {
+            //Get the UserId from the token, if automatic translation is off it will fallback to using "sub" to find UserId
+            //returns null if sub does not exisit 
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                      ?? User.FindFirst("sub")?.Value;
+
+            return claim;
+        }
+
         // GET: api/user
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -27,9 +39,23 @@ namespace personal_health_passport.Controllers
             return Ok(users);
         }
 
-        // GET: api/user/5
         [HttpGet("me")]
         public IActionResult GetUserById()
+        {
+            string id = GetLoggedInUserId();
+
+            if (id == null)
+                return Unauthorized();
+
+            var user = _userService.GetUserById(id);
+
+            return Ok(user);
+        }
+
+        // GET: api/user/5
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult GetUserById(string id)
         {
             var user = _userService.GetUserById(id);
 
@@ -52,26 +78,64 @@ namespace personal_health_passport.Controllers
             return NoContent();
         }
 
-        // PUT: api/user/5
-        [HttpPut("me")]
-        public IActionResult UpdateUser(string id, [FromBody] User updated)
-        {
-            var user = _userService.UpdateUser(id, updated);
 
-            if (user == null)
-                return NotFound();
+        [HttpPatch("me/password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.NewPassword))
+                return BadRequest("Username cannot be empty.");
+
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (id == null)
+                return Unauthorized();
+
+            var result = await _userService.ChangePassword(id, dto);
+
+            if(result == null)
+            {
+                return BadRequest("Couldnt change password");
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPatch("me/email")]
+        public async Task<IActionResult> ChangeEmail([FromBody] ChangeEmailRequest dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.NewEmail))
+                return BadRequest("Username cannot be empty.");
+
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (id == null)
+                return Unauthorized();
+
+            var result = await _userService.ChangeEmail(id, dto);
+
+            if (result == null)
+            {
+                return BadRequest("Couldnt change email");
+            }
 
             
 
-            return Ok(user);
+            return Ok(result);
         }
+
+
 
         // PATCH: api/user/5/username
         [HttpPatch("me/username")]
-        public IActionResult ChangeUsername(string id, [FromBody] string newUsername)
+        public IActionResult ChangeUsername([FromBody] string newUsername)
         {
             if (string.IsNullOrWhiteSpace(newUsername))
                 return BadRequest("Username cannot be empty.");
+
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (id == null)
+                return Unauthorized();
 
             var user = _userService.ChangeUsername(id, newUsername);
 

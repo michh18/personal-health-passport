@@ -55,6 +55,7 @@
 .hero {
   display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 520px;
   padding: 60px 8%;
   background: linear-gradient(135deg, #e8f6f3, #f7fafc);
@@ -87,6 +88,7 @@
 
 .hero-actions {
   display: flex;
+  justify-content: center;
   gap: 14px;
   margin-top: 30px;
 }

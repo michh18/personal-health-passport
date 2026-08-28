@@ -1,0 +1,188 @@
+.dashboard-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.dashboard-heading h1 {
+    margin: 6px 0 10px;
+    font-size: 2.5rem;
+}
+
+.dashboard-heading p {
+    margin: 0;
+    color: #6b7280;
+}
+
+.dashboard-eyebrow {
+    color: #146c73;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.summary-section h2 {
+    margin-bottom: 20px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
+}
+
+.summary-card-title {
+    margin: 0 0 14px;
+    color: #6b7280;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.summary-card-value {
+    margin: 0 0 20px;
+    color: #146c73;
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+
+.summary-card-link {
+    padding: 0;
+    color: #146c73;
+    font: inherit;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.summary-card-link:hover {
+    text-decoration: underline;
+}
+
+.summary-card-link:focus-visible {
+    outline: 3px solid rgb(20 108 115 / 30%);
+    outline-offset: 4px;
+}
+
+.recent-notes-section {
+    margin-top: 50px;
+}
+
+.recent-notes-section h2 {
+    margin-bottom: 20px;
+}
+
+.recent-notes-section .table-wrapper {
+    overflow-x: auto;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.recent-notes-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-notes-section th,
+.recent-notes-section td {
+    padding: 18px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.recent-notes-section th {
+    color: #374151;
+    font-size: 0.9rem;
+    background-color: #f1f7f7;
+}
+
+.recent-notes-section tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.recent-notes-section tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-reviewed {
+    color: #166534;
+    background-color: #dcfce7;
+}
+
+.status-needs-review {
+    color: #92400e;
+    background-color: #fef3c7;
+}
+
+.view-note-button {
+    padding: 7px 14px;
+    color: #146c73;
+    font: inherit;
+    font-weight: 600;
+    background-color: transparent;
+    border: 1px solid #146c73;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.view-note-button:hover {
+    color: #ffffff;
+    background-color: #146c73;
+}
+
+.view-note-button:focus-visible {
+    outline: 3px solid rgb(20 108 115 / 30%);
+    outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 32px;
+        text-align: left;
+    }
+
+    .dashboard-heading h1 {
+        font-size: 2rem;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recent-notes-section {
+        margin-top: 32px;
+    }
+
+    .recent-notes-section th,
+    .recent-notes-section td {
+        padding: 14px 16px;
+    }
+}
