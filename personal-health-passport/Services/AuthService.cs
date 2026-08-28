@@ -52,8 +52,8 @@ namespace personal_health_passport.Services
         {
             var claims = new List<Claim>
             {
-                new Claim( JwtRegisteredClaimNames.Sub, user.Id),
-                new Claim( JwtRegisteredClaimNames.Email, user.Email!)
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email!)
             };
 
             foreach (var role in roles)
