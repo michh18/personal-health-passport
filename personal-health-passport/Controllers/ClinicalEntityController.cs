@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using personal_health_passport.DTOs;
+using personal_health_passport.Models;
 using personal_health_passport.Services;
 using System.Net.Http;
 
@@ -66,6 +67,66 @@ namespace personal_health_passport.Controllers
             }
         }
 
-       
+        [HttpGet("{id}")]
+        public IActionResult GetEntity(int id)
+        {
+            var entity = _entityService.GetEntity(id);
+
+            if (entity == null)
+                return NotFound();
+
+            return Ok(entity);
+        }
+
+        [HttpGet("user")]
+        public IActionResult GetAllEntitiesByUser(string? userId)
+        {
+            var entities = _entityService.GetAllEntitiesByUser(userId);
+
+            return Ok(entities);
+        }
+
+        [HttpPost]
+        public IActionResult AddEntity([FromBody] ClinicalEntity entity)
+        {
+            var result = _entityService.AddEntity(entity);
+
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateEntity(
+            int id,
+            [FromBody] ClinicalEntity updatedEntity)
+        {
+            var result = _entityService.UpdateEntity(id, updatedEntity);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteEntity(int id)
+        {
+            var deleted = _entityService.DeleteEntity(id);
+
+            if (!deleted)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteEntities(
+            [FromBody] List<ClinicalEntity> entities)
+        {
+            _entityService.DeleteEntities(entities);
+
+            return NoContent();
+        }
+
+
     }
 }

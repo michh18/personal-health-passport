@@ -29,7 +29,7 @@ namespace personal_health_passport.Controllers
 
         // GET: api/user/5
         [HttpGet("me")]
-        public IActionResult GetUserById(string id)
+        public IActionResult GetUserById()
         {
             var user = _userService.GetUserById(id);
 

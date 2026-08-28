@@ -5,7 +5,7 @@ namespace personal_health_passport.Models
     public class ClinicalEntity
     {
         public int Id { get; set; }
-        public int Uid { get; set; }
+        public string Uid { get; set; } = string.Empty;
         public string? Entity { get; set; } = string.Empty;
         public string? Trigger { get; set; } = string.Empty;
         public string? Assertion { get; set; } = string.Empty;
