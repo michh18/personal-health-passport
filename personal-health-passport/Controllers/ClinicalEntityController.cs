@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using personal_health_passport.Models;
+using personal_health_passport.DTOs;
 using personal_health_passport.Services;
 using System.Net.Http;
 
