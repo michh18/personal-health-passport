@@ -1,185 +1,243 @@
 .dashboard-page {
-  min-height: 100vh;
-  padding: 40px 8%;
-  background-color: #f7fafc;
-  color: #1f2937;
+    min-height: 100vh;
+    padding: 40px 8%;
+    background-color: #f7fafc;
+    color: #1f2937;
 }
 
 .dashboard-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 50px;
 }
 
 .dashboard-heading h1 {
-  margin: 6px 0 10px;
-  font-size: 2.5rem;
+    margin: 6px 0 10px;
+    font-size: 2.5rem;
 }
 
 .dashboard-heading p {
-  margin: 0;
-  color: #6b7280;
+    margin: 0;
+    color: #6b7280;
 }
 
 .dashboard-eyebrow {
-  color: #146c73 !important;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+    color: #146c73 !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .upload-notes-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #146c73;
-  color: white;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #146c73;
+    color: white;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .upload-notes-button:hover {
-  background-color: #0f555b;
+    background-color: #0f555b;
 }
 
 .summary-section h2 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .summary-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 .summary-card {
-  padding: 24px;
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
+    padding: 24px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
 }
 
 .summary-card-title {
-  margin: 0 0 14px;
-  color: #6b7280;
-  font-size: 0.95rem;
-  font-weight: 600;
+    margin: 0 0 14px;
+    color: #6b7280;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .summary-card-value {
-  margin: 0 0 20px;
-  color: #146c73;
-  font-size: 2.25rem;
-  font-weight: 700;
+    margin: 0 0 20px;
+    color: #146c73;
+    font-size: 2.25rem;
+    font-weight: 700;
 }
 
 .summary-card-link {
-  padding: 0;
-  border: none;
-  background: none;
-  color: #146c73;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #146c73;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .summary-card-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (max-width: 900px) {
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 600px) {
-  .dashboard-page {
-    padding: 30px 5%;
-  }
+    .dashboard-page {
+        padding: 30px 5%;
+    }
 
-  .dashboard-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+    .dashboard-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions-buttons {
+        flex-direction: column;
+    }
+
+    .quick-action-button {
+        width: 100%;
+    }
 }
 
 .recent-notes-section {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 
 .table-wrapper {
-  overflow-x: auto;
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+    overflow-x: auto;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
-th,
-td {
-  padding: 18px 20px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
+th, td {
+    padding: 18px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 th {
-  background-color: #f1f7f7;
-  color: #374151;
-  font-size: 0.9rem;
+    background-color: #f1f7f7;
+    color: #374151;
+    font-size: 0.9rem;
 }
 
 tbody tr:last-child td {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 tbody tr:hover {
-  background-color: #f9fafb;
+    background-color: #f9fafb;
 }
 
 .status {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .status-reviewed {
-  background-color: #dcfce7;
-  color: #166534;
+    background-color: #dcfce7;
+    color: #166534;
 }
 
 .status-needs-review {
-  background-color: #fef3c7;
-  color: #92400e;
+    background-color: #fef3c7;
+    color: #92400e;
 }
 
 .view-note-button {
-  padding: 7px 14px;
-  border: 1px solid #146c73;
-  border-radius: 6px;
-  background-color: transparent;
-  color: #146c73;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
+    padding: 7px 14px;
+    border: 1px solid #146c73;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #146c73;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .view-note-button:hover {
-  background-color: #146c73;
-  color: white;
+    background-color: #146c73;
+    color: white;
+}
+
+.quick-actions {
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.quick-actions h2 {
+    margin: 0 0 18px;
+    color: #1e293b;
+    font-size: 1.4rem;
+}
+
+.quick-actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.quick-action-button {
+    padding: 12px 18px;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.quick-action-button:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    transform: translateY(-2px);
+}
+
+.quick-action-button:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 3px;
+}
+
+.quick-action-button:active {
+    box-shadow: none;
+    transform: translateY(0);
 }

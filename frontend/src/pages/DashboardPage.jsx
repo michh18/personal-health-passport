@@ -54,10 +54,6 @@ function DashboardPage() {
                     <h1>Welcome back</h1>
                     <p>Here is an overview of your health information.</p>
                 </div>
-
-                <button className="upload-notes-button">
-                    Upload clinical notes
-                </button>
             </section>
 
             <section className="summary-section">
@@ -114,6 +110,21 @@ function DashboardPage() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+            </section>
+
+            <section className="quick-actions">
+                <h2>Quick actions</h2>
+                <div className="quick-actions-buttons">
+                    <button type="button" className="quick-action-button">
+                        Upload clinical notes
+                    </button>
+                    <button type="button" className="quick-action-button">
+                        Review extracted summaries
+                    </button>
+                    <button type="button" className="quick-action-button">
+                        View health record
+                    </button>
                 </div>
             </section>
         </main>
