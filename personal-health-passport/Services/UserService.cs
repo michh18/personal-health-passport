@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using personal_health_passport.DTOs;
 using personal_health_passport.Models;
 using personal_health_passport.Repositories;
 
@@ -9,7 +10,9 @@ namespace personal_health_passport.Services
         List<User> GetAllUser();
         User? GetUserById(string id);
         bool DeleteUser(string id);
-        User? UpdateUser(string id, User updated);
+        public Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto);
+        public Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto);
+
         User? ChangeUsername(string id, string newUsername);
     }
     public class UserService : IUserService
@@ -37,9 +40,44 @@ namespace personal_health_passport.Services
         {
             return _userRepo.DeleteUser(id);
         }
-        public User? UpdateUser(string id, User updated)
+        public async Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto)
         {
-            return _userRepo.UpdateUser(id, updated);
+            User user = GetUserById(id);
+            if (user == null) return null;
+
+            var result = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                foreach(var e in result.Errors)
+                {
+                    Console.WriteLine(e.Description);
+                }
+
+                return null;
+            }
+
+            return result;
+        }
+
+        public async Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto)
+        {
+            User user = GetUserById(id);
+            if (user == null) return null;
+
+            var result = await _userManager.ChangeEmailAsync(user, dto.NewEmail, dto.token);
+
+            if (!result.Succeeded)
+            {
+                foreach (var e in result.Errors)
+                {
+                    Console.WriteLine(e.Description);
+                }
+
+                return null;
+            }
+
+            return result;
         }
         public User? ChangeUsername(string id, string newUsername)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using personal_health_passport.Models;
 
 namespace personal_health_passport.Repositories
@@ -9,7 +10,6 @@ namespace personal_health_passport.Repositories
         User? GetUserById(string id);
         User? AddUser(User user);
         bool DeleteUser(string id);
-        User? UpdateUser(string id, User user);
         User? ChangeUsername(string id, string newUsername);
         User? GetUserByEmail(string email);
         User? GetUserByUsername(string username);
@@ -17,9 +17,11 @@ namespace personal_health_passport.Repositories
     public class UserRepo : IUserRepo
     {
         private readonly ClinicalDbContext _context;
-        public UserRepo(ClinicalDbContext context)
+        private readonly UserManager<User> _userManager;
+        public UserRepo(ClinicalDbContext context , UserManager<User> userManager )
         {
             _context = context;
+            _userManager = userManager;
         }
         public List<User> GetAllUsers()
         {
@@ -47,16 +49,7 @@ namespace personal_health_passport.Repositories
 
 
         }
-        public User? UpdateUser(string id, User updatedUser)
-        {
-            var currUser = GetUserById(id);
-            if (currUser == null) return null;
-            currUser.Email = updatedUser.Email;
-            currUser.PasswordHash = updatedUser.PasswordHash;
-            _context.SaveChanges();
-            return currUser;
-
-        }
+        
         public User? ChangeUsername(string id, string newUsername)
         {
             if (string.IsNullOrWhiteSpace(newUsername)) return null;
