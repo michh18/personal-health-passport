@@ -66,6 +66,9 @@ function DashboardPage() {
                 <li>
                     <a href="/health-record">Health record</a>
                 </li>
+                <li>
+                    <a href="/profile">Profile</a>
+                </li>
             </ul>
 
             <a href="/" className="sidebar-logout">
