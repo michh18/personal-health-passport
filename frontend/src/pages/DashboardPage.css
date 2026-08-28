@@ -208,6 +208,7 @@ tbody tr:hover {
 .quick-actions-buttons {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
 }
 
