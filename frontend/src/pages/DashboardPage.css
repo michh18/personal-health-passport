@@ -1,9 +1,110 @@
-.dashboard-page {
+.dashboard-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f6f9fa;
+}
+
+.dashboard-sidebar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex: 0 0 250px;
+    flex-direction: column;
+    height: 100vh;
+    padding: 32px 20px;
+    color: #ffffff;
+    background-color: #086972;
+    box-sizing: border-box;
+}
+
+.sidebar-logo {
+    margin: 0 12px 40px;
+    color: #ffffff;
+    font-size: 1.25rem;
+    text-align: left;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar-links a,
+.sidebar-logout {
+    display: block;
+    padding: 12px 14px;
+    color: #e8f5f5;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 8px;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.sidebar-links a:hover,
+.sidebar-links a.active {
+    color: #086972;
+    background-color: #ffffff;
+}
+
+.sidebar-logout {
+    margin-top: auto;
+}
+
+.sidebar-logout:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.dashboard-main {
+    flex: 1;
+    min-width: 0;
+    padding: 48px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .dashboard-sidebar {
+        position: static;
+        flex-basis: auto;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .sidebar-logo {
+        margin-bottom: 20px;
+    }
+
+    .sidebar-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar-logout {
+        margin-top: 16px;
+    }
+
+    .dashboard-main {
+        padding: 24px 16px;
+    }
+}
+
+/* .dashboard-main {
     min-height: 100vh;
     padding: 40px 8%;
     background-color: #f7fafc;
     color: #1f2937;
-}
+} */
 
 .dashboard-heading {
     display: flex;
@@ -111,14 +212,6 @@
     .summary-grid {
         grid-template-columns: 1fr;
     }
-
-    .quick-actions-buttons {
-        flex-direction: column;
-    }
-
-    .quick-action-button {
-        width: 100%;
-    }
 }
 
 .recent-notes-section {
@@ -189,56 +282,4 @@ tbody tr:hover {
 .view-note-button:hover {
     background-color: #146c73;
     color: white;
-}
-
-.quick-actions {
-    padding: 24px;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.quick-actions h2 {
-    margin: 0 0 18px;
-    color: #1e293b;
-    font-size: 1.4rem;
-}
-
-.quick-actions-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.quick-action-button {
-    padding: 12px 18px;
-    color: #ffffff;
-    font: inherit;
-    font-weight: 600;
-    background-color: #2563eb;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.quick-action-button:hover {
-    background-color: #1d4ed8;
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
-    transform: translateY(-2px);
-}
-
-.quick-action-button:focus-visible {
-    outline: 3px solid rgba(37, 99, 235, 0.35);
-    outline-offset: 3px;
-}
-
-.quick-action-button:active {
-    box-shadow: none;
-    transform: translateY(0);
 }
