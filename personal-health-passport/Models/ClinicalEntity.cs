@@ -15,6 +15,8 @@ namespace personal_health_passport.Models
         public string? Canonical { get; set; } = string.Empty;
         public int SemanticCodes { get; set; }
 
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
 
 
     }

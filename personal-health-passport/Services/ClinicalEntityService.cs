@@ -7,7 +7,7 @@ namespace personal_health_passport.Services
 {
     public interface IClinicalEntityService
     {
-        public bool AddEntitiesToDb(ClinicalTextResponse response);
+        public bool AddEntitiesToDb(string userId, ClinicalTextResponse response);
         public ClinicalEntity? GetEntity(int id);
 
         public List<ClinicalEntity> GetAllEntitiesByUser(string? userId);
@@ -29,10 +29,11 @@ namespace personal_health_passport.Services
         {
             _entityRepo = repo;
         }
-        public bool AddEntitiesToDb(ClinicalTextResponse response)
+        public bool AddEntitiesToDb(string userId , ClinicalTextResponse response)
         {
             foreach (ClinicalEntity e in response.Entities)
             {
+                e.Uid = userId;
                 ClinicalEntity? entry = _entityRepo.AddEntity(e);
                 if (entry == null) return false;
             }
