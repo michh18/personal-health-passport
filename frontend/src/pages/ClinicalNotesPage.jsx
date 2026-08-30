@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DashboardNav from '../components/DashboardNav';
-import './ClinicalNotesPage.css';
+import './css/ClinicalNotesPage.css';
 import '../styles/AuthenticatedPages.css';
 
 const API_BASE_URL = 'https://localhost:7226';

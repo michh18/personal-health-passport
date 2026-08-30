@@ -1,4 +1,4 @@
-import "./DashboardPage.css";
+import "./css/DashboardPage.css";
 import '../styles/AuthenticatedPages.css';
 import DashboardNav from "../components/DashboardNav";
 
