@@ -7,7 +7,7 @@ namespace personal_health_passport.Repositories
     {
         public List<ClinicalEntity> GetAllEntities();
 
-        public List<ClinicalEntity> GetAllEntitiesByUser(int? userId);
+        public List<ClinicalEntity> GetAllEntitiesByUser(string? userId);
 
         public ClinicalEntity? GetEntity(int id);
 
@@ -36,7 +36,7 @@ namespace personal_health_passport.Repositories
 
    
 
-        public List<ClinicalEntity> GetAllEntitiesByUser(int? userId)
+        public List<ClinicalEntity> GetAllEntitiesByUser(string? userId)
         {
             return _dbContext.Entities.Where(x => x.Uid == userId).ToList();
         }
