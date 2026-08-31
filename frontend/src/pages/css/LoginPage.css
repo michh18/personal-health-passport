@@ -81,6 +81,13 @@
     font-size: 15px; 
 }
 
+.login-error {
+    color: #ff4d4f;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
 /* Form */ 
 
 .login-card form { 

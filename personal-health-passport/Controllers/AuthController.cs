@@ -35,9 +35,9 @@ namespace personal_health_passport.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest dto)
+        public async Task<IActionResult> Login([FromBody] LoginRequest dto)
         {
-            var token = _authService.Login(dto.Email, dto.Password);
+            var token = await _authService.Login(dto.Email, dto.Password);
             if (token == null) return Unauthorized(new { message = "Invalid email or password." });
             return Ok(new 
             { 

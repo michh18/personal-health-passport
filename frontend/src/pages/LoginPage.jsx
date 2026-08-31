@@ -1,28 +1,54 @@
 import { useState } from "react";
 import "./css/LoginPage.css";
+import axios from "axios";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
-    const [step, setStep] = useState("email");
+    const [password, setPassword] = useState("");
+    const [step, setStep] = useState("login");
+    const [error, setError] = useState("");
 
-    const handleContinue = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+        setError("");
 
-        if (!email) return;
+        try {
+            const response = await axios.post(
+                "https://localhost:7226/api/auth/login",
+                {
+                    email: email,
+                    password: password
+                }
+            );
 
-        // TODO: Call your backend here to check whether
-        // the email is registered.
-        //
-        // Example response:
-        // { exists: true }  -> password
-        // { exists: false } -> signup
+            const token = response.data.token;
 
-        const emailExists = true; // temporary
+            // Store the JWT so it can be used for authenticated requests
+            localStorage.setItem("token", token);
 
-        if (emailExists) {
-            setStep("password");
-        } else {
-            setStep("signup");
+            console.log("Login successful");
+
+            // You can redirect to the dashboard here later
+            window.location.href = "/dashboard";
+
+        } catch (error) {
+            if (error.response) {
+                console.error(
+                    "Login failed:",
+                    error.response.data
+                );
+
+                if (error.response?.status === 401 || error.response?.status === 400) {
+                    setError("Incorrect email or password.");
+                } else {
+                    setError("Something went wrong. Please try again.");
+                }
+            } else {
+                console.error(
+                    "Could not connect to the server:",
+                    error
+                );
+            }
         }
     };
 
@@ -30,13 +56,21 @@ function LoginPage() {
         <div className="login-page">
 
             <header className="navbar">
-                <h1 className="logo">Personal Health Passport</h1>
+                <h1 className="logo">
+                    Personal Health Passport
+                </h1>
 
                 <nav>
                     <a href="#how-it-works">How it works</a>
                     <a href="/upload">Upload Notes</a>
-                    <button className="login-button">Log in</button>
-                    <button className="register-button">Register</button>
+
+                    <button className="login-button">
+                        Log in
+                    </button>
+
+                    <button className="register-button">
+                        Register
+                    </button>
                 </nav>
             </header>
 
@@ -44,127 +78,88 @@ function LoginPage() {
 
                 <div className="login-card">
 
-                    {step === "email" && (
-                        <>
-                            <h2>Welcome back</h2>
-                            <p className="login-subtitle">
-                                Enter your email to continue
-                            </p>
+                    {step === "login" && 
+                    ( <>
+                        <h2>Welcome back</h2>
 
-                            <form onSubmit={handleContinue}>
-                                <label htmlFor="email">Email</label>
+                        <p className="login-subtitle">
+                            Log in to your Personal Health Passport
+                        </p>
 
-                                <input
-                                    id="email"
-                                    type="email"
-                                    placeholder="you@example.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
+                        <form onSubmit={handleLogin}>
 
-                                <button
-                                    type="submit"
-                                    className="continue-button"
-                                >
-                                    Continue
-                                </button>
-                            </form>
-                        </>
-                    )}
+                            <label htmlFor="email">
+                                Email
+                            </label>
 
-                    {step === "password" && (
-                        <>
-                            <h2>Welcome back</h2>
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
 
-                            <p className="login-subtitle">
-                                Enter your password to continue
-                            </p>
+                            <label htmlFor="password">
+                                Password
+                            </label>
 
-                            <form>
-                                <label htmlFor="password">Password</label>
-
-                                <input
-                                    id="password"
-                                    type="password"
-                                    placeholder="Enter your password"
-                                    required
-                                />
-
-                                <button
-                                    type="submit"
-                                    className="continue-button"
-                                >
-                                    Log in
-                                </button>
-                            </form>
+                            <input
+                                id="password"
+                                type="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
 
                             <button
-                                className="back-button"
-                                onClick={() => setStep("email")}
+                                type="submit"
+                                className="continue-button"
                             >
-                                ← Use a different email
+                                Log in
                             </button>
-                        </>
-                    )}
 
-                    {step === "signup" && (
-                        <>
-                            <h2>Create your account</h2>
+                        </form>
 
-                            <p className="login-subtitle">
-                                We couldn't find an account with this email.
+                        {error && (
+                            <p className="login-error">
+                                {error}
                             </p>
+                        )}
 
-                            <form>
-                                <label htmlFor="signup-email">Email</label>
 
-                                <input
-                                    id="signup-email"
-                                    type="email"
-                                    value={email}
-                                    readOnly
-                                />
+                        <button className="back-button" type="button" onClick = {() => setStep("signup")}>
+                            Dont have an account?
+                        </button>
+                        <button className="back-button" type="button" >
+                            Forgot your password?
+                        </button>
+                        
 
-                                <label htmlFor="name">Name</label>
+                        </>   
+                    )} 
 
-                                <input
-                                    id="name"
-                                    type="text"
-                                    placeholder="Your name"
-                                    required
-                                />
 
-                                <label htmlFor="signup-password">
-                                    Password
-                                </label>
-
-                                <input
-                                    id="signup-password"
-                                    type="password"
-                                    placeholder="Create a password"
-                                    required
-                                />
-
-                                <button
-                                    type="submit"
-                                    className="continue-button"
-                                >
-                                    Create account
-                                </button>
-                            </form>
-
-                            <button
-                                className="back-button"
-                                onClick={() => setStep("email")}
-                            >
-                                ← Use a different email
-                            </button>
-                        </>
-                    )}
+                    {step === "signup" && 
+                    ( <>
+                        <h2>Create your account</h2> 
+                        <form> 
+                            <label htmlFor="signup-email">Email</label> 
+                            <input id="signup-email" type="email" value={email} placeholder="Your email" required /> 
+                            <label htmlFor="name">Name</label> 
+                            <input id="name" type="text" placeholder="Your name" required /> 
+                            <label htmlFor="signup-password"> Password </label> 
+                            <input id="signup-password" type="password" placeholder="Create a password" required /> 
+                            <button type="submit" className="continue-button" > Create account </button> 
+                        </form> 
+                        
+                        <button className="back-button" onClick={() => setStep("login")} > ← Already have an account? </button>
+                        </>   
+                    )} 
 
                 </div>
-
             </main>
         </div>
     );
