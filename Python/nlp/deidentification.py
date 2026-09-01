@@ -28,7 +28,7 @@ DATE_OF_BIRTH_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-def deidentify_names(text: str) -> str:
+def deidentify_presidio_entities(text: str) -> str:
     if not text or not text.strip():
         return text
 
@@ -42,20 +42,29 @@ def deidentify_names(text: str) -> str:
             anonymised_lines.append(line)
             continue
 
-        detected_names = analyzer.analyze(
+        detected_entities = analyzer.analyze(
             text=content,
-            entities=["PERSON"],
+            entities=[
+                "PERSON",
+                "UK_NHS",
+            ],
             language="en",
         )
 
         result = anonymizer.anonymize(
             text=content,
-            analyzer_results=detected_names,
+            analyzer_results=detected_entities,
             operators={
                 "PERSON": OperatorConfig(
                     "replace",
                     {
                         "new_value": "[PERSON]",
+                    },
+                ),
+                "UK_NHS": OperatorConfig(
+                    "replace",
+                    {
+                        "new_value": "[NHS_NUMBER]",
                     },
                 ),
             },
@@ -77,7 +86,7 @@ def deidentify_date_of_birth(text: str) -> str:
     )
 
 def deidentify_text(text: str) -> str:
-    text = deidentify_names(text)
+    text = deidentify_presidio_entities(text)
     text = deidentify_date_of_birth(text)
 
     return text
@@ -89,7 +98,8 @@ if __name__ == "__main__":
 
     Patient: John Smith
     DOB: 15/3/1985
-    NHS number: 123 456 7890
+    NHS number: 943 476 5919
+    Date: 1/9/2026
 
     Dear Mr Smith,
 
