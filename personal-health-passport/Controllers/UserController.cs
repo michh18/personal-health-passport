@@ -67,10 +67,10 @@ namespace personal_health_passport.Controllers
 
         // DELETE: api/user/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult DeleteUser(string id)
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var deleted = _userService.DeleteUser(id);
+            var deleted = await _userService.DeleteUser(id);
 
             if (!deleted)
                 return NotFound();

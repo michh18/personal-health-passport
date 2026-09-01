@@ -8,6 +8,7 @@ using personal_health_passport;
 using personal_health_passport.Models;
 using personal_health_passport.Repositories;
 using personal_health_passport.Services;
+using Resend;
 using System.Text;
 
 
@@ -22,6 +23,8 @@ builder.Services.AddScoped<IClinicalEntityService, ClinicalEntityService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ResendService>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -73,10 +76,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         //};
     });
 
+
+
 builder.Services
     .AddIdentity<User, IdentityRole>(options =>
     {
         options.User.RequireUniqueEmail = true;
+        options.SignIn.RequireConfirmedEmail = true;
     })
     .AddEntityFrameworkStores<ClinicalDbContext>()
     .AddDefaultTokenProviders();
@@ -148,6 +154,12 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<ResendClient>();
+builder.Services.Configure<ResendClientOptions>(o =>
+{
+    o.ApiToken = builder.Configuration["Resend:Api-Key"];
+});
+builder.Services.AddTransient<IResend, ResendClient>();
 
 var app = builder.Build();
 

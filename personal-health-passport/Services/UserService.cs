@@ -9,7 +9,7 @@ namespace personal_health_passport.Services
     {
         List<User> GetAllUser();
         User? GetUserById(string id);
-        bool DeleteUser(string id);
+        public Task<bool> DeleteUser(string id);
         public Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto);
         public Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto);
 
@@ -36,9 +36,17 @@ namespace personal_health_passport.Services
         {
             return _userRepo.GetUserById(id);
         }
-        public bool DeleteUser(string id)
+        public async Task<bool> DeleteUser(string id)
         {
-            return _userRepo.DeleteUser(id);
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user != null)
+            {
+                await _userManager.DeleteAsync(user);
+                return true;
+            }
+
+            return false;
         }
         public async Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto)
         {

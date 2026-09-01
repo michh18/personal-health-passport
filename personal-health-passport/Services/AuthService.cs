@@ -11,17 +11,21 @@ namespace personal_health_passport.Services
     {
         public Task<string?> Login(string email, string password);
         public Task<string?> Register(string name, string email, string password);
+
+        Task<bool> ConfirmEmail(string userId, string token);
     }
     public class AuthService : IAuthService
     {
         
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ResendService _emailSender;
 
-        public AuthService(UserManager<User> userManager, IConfiguration configuration)
+        public AuthService(UserManager<User> userManager, IConfiguration configuration , ResendService emailSender)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _emailSender = emailSender;
 
         }
 
@@ -88,6 +92,9 @@ namespace personal_health_passport.Services
             if (user == null)
                 return null;
 
+            if (!user.EmailConfirmed)
+                return null;
+
             var valid = await _userManager.CheckPasswordAsync(user, password);
 
             if (!valid)
@@ -117,15 +124,37 @@ namespace personal_health_passport.Services
 
             await _userManager.AddToRoleAsync(user, "Patient");
 
-            var roles = await _userManager.GetRolesAsync(user);
+            //var roles = await _userManager.GetRolesAsync(user);
 
-            return GenerateJwtToken(user, roles);
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var confirmationUrl = $"{_configuration["FrontendUrl"]}/confirm-email" +
+                $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+
+            await _emailSender.SendConfirmationLinkAsync(
+                user,
+                user.Email,
+                confirmationUrl
+            );
+
+            return "Registration Successful";
         }
 
-        public void LogOut(string token)
-        {
-            //Remove auth bearer token from frontend
+        public async Task<bool> ConfirmEmail(string userId, string token)
+        { 
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return false;
+
+            var result =
+                await _userManager.ConfirmEmailAsync(user, token);
+
+            return result.Succeeded;
         }
+
+       
     }
     
 }

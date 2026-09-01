@@ -5,6 +5,8 @@ import axios from "axios";
 function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [name, setName] = useState("");
     const [step, setStep] = useState("login");
     const [error, setError] = useState("");
 
@@ -40,6 +42,49 @@ function LoginPage() {
 
                 if (error.response?.status === 401 || error.response?.status === 400) {
                     setError("Incorrect email or password.");
+                } else {
+                    setError("Something went wrong. Please try again.");
+                }
+            } else {
+                console.error(
+                    "Could not connect to the server:",
+                    error
+                );
+            }
+        }
+    };
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setError("");
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                "https://localhost:7226/api/auth/register",
+                {
+                    email: email,
+                    password: password,
+                    name: name
+                }
+            );
+
+            console.log("Registration successful");
+            setStep("signup-success");
+
+        } catch (error) {
+            if (error.response) {
+                console.error(
+                    "Registration failed:",
+                    error.response.data
+                );
+
+                if (error.response?.status === 401 || error.response?.status === 400) {
+                    setError("Email already exists.");
                 } else {
                     setError("Something went wrong. Please try again.");
                 }
@@ -145,19 +190,37 @@ function LoginPage() {
                     {step === "signup" && 
                     ( <>
                         <h2>Create your account</h2> 
-                        <form> 
-                            <label htmlFor="signup-email">Email</label> 
-                            <input id="signup-email" type="email" value={email} placeholder="Your email" required /> 
+                        <form onSubmit={handleRegister}> 
+                            <label htmlFor="signup-email">Email</label>
+                            <input id="signup-email" type="email" onChange={(e) => setEmail(e.target.value)} value={email}  placeholder="Your email" required /> 
                             <label htmlFor="name">Name</label> 
-                            <input id="name" type="text" placeholder="Your name" required /> 
+                            <input id="name" type="text" onChange={(e) => setName(e.target.value)} value={name} placeholder="Your name" required /> 
                             <label htmlFor="signup-password"> Password </label> 
-                            <input id="signup-password" type="password" placeholder="Create a password" required /> 
+                            <input id="signup-password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="Create a password" required /> 
+                            <label htmlFor="confirm-signup-password"> Confirm Password </label> 
+                            <input id="confirm-signup-password" type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} placeholder="Confirm your password" required /> 
                             <button type="submit" className="continue-button" > Create account </button> 
                         </form> 
+
+                        {error && (
+                            <p className="login-error">
+                                {error}
+                            </p>
+                        )}
                         
                         <button className="back-button" onClick={() => setStep("login")} > ← Already have an account? </button>
                         </>   
                     )} 
+
+                    {step === "signup-success" &&(
+                        <>
+                        <h2>Check your email</h2> 
+                        <p className="login-subtitle"> We've sent a confirmation email to your email address. 
+                            Please check your inbox and click the verification link to activate your account. </p> 
+                        <p className="login-subtitle"> 
+                            Once your email has been confirmed, you can return here and log in. </p>                        
+                        </>    
+                    )}
 
                 </div>
             </main>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using personal_health_passport.DTOs;
 using personal_health_passport.Services;
@@ -10,28 +11,27 @@ namespace personal_health_passport.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly IUserService _userService;
+        public AuthController(IAuthService authService, IUserService userService)
         {
             _authService = authService;
+            _userService = userService;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
             
-            if (request.Password != request.ConfirmPassword)
-                return BadRequest("Password doesnt match.");
-
-            var token = await _authService.Register(
+            var result = await _authService.Register(
                 request.Name,
                 request.Email,
                 request.Password
             );
      
-            if (token.StartsWith("Error: "))
-                return BadRequest(token);
+            if (result.StartsWith("Error: "))
+                return BadRequest(result);
 
-            return Ok(new { token });
+            return Ok(result);
         }
 
         [HttpPost("login")]
@@ -43,6 +43,30 @@ namespace personal_health_passport.Controllers
             { 
                 token 
             });
+        }
+
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, [FromQuery] string token)
+        {
+            var result = await _authService.ConfirmEmail(userId, token);
+
+            if (!result)
+            {
+                return BadRequest("Email confirmation failed.");
+            }
+
+            return Ok(new
+            {
+                message = "Email confirmed successfully."
+            });
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> testDelete([FromBody] string id)
+        {
+            bool result = await _userService.DeleteUser(id);
+
+            return result ? Ok() : BadRequest();
         }
     }
 }
