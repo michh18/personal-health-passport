@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using personal_health_passport.Models;
 using Resend;
+using System;
 
 namespace personal_health_passport.Services
 {
@@ -51,9 +52,58 @@ namespace personal_health_passport.Services
             throw new NotImplementedException();
         }
 
-        public Task SendPasswordResetLinkAsync(User user, string email, string resetLink)
+        public async Task SendPasswordResetLinkAsync(User user, string email, string resetLink)
         {
-            throw new NotImplementedException();
+           
+            var message = new EmailMessage
+            {
+                From = from,
+                To = { email },
+                Subject = "Reset your Personal Health Passport password",
+
+                HtmlBody = $@"
+                    <h1>Reset your password</h1>
+                    <p>
+                        We received a request to reset the password for your
+                        Personal Health Passport account.
+                    </p>
+
+                    <p>
+                        Click the link below to create a new password:
+                    </p>
+
+                    <p>
+                        <a href='{resetLink}'>Reset your password</a>
+                    </p>
+
+                    <p>
+                        If you didn't request a password reset, you can safely
+                        ignore this email.
+                    </p>
+                ",
+
+                TextBody = $@"
+                    We received a request to reset your Personal Health Passport password.
+
+                    Reset your password using the following link:
+
+                    {resetLink}
+
+                    If you didn't request a password reset, you can safely ignore this email.
+                "
+            };
+
+            try
+            {
+                var response = await client.EmailSendAsync(message);
+
+                Console.WriteLine("Password reset email sent successfully!");
+                Console.WriteLine($"Email ID: {response.Content}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

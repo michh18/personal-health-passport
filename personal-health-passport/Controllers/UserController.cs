@@ -78,28 +78,6 @@ namespace personal_health_passport.Controllers
             return NoContent();
         }
 
-
-        [HttpPatch("me/password")]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest dto)
-        {
-            if (string.IsNullOrWhiteSpace(dto.NewPassword))
-                return BadRequest("Username cannot be empty.");
-
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (id == null)
-                return Unauthorized();
-
-            var result = await _userService.ChangePassword(id, dto);
-
-            if(result == null)
-            {
-                return BadRequest("Couldnt change password");
-            }
-
-            return Ok(result);
-        }
-
         [HttpPatch("me/email")]
         public async Task<IActionResult> ChangeEmail([FromBody] ChangeEmailRequest dto)
         {

@@ -4,6 +4,7 @@ import ClinicalNotesPage from "./pages/ClinicalNotesPage";
 import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import ConfirmEmailPage from "./pages/ConfirmEmailPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/confirm-email" element={<ConfirmEmailPage/>} />
+        <Route path="/reset-password" element={<ResetPasswordPage />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -12,7 +12,11 @@ namespace personal_health_passport.Services
         public Task<string?> Login(string email, string password);
         public Task<string?> Register(string name, string email, string password);
 
-        Task<bool> ConfirmEmail(string userId, string token);
+        public Task<bool> ConfirmEmail(string userId, string token);
+
+        public Task<bool> ForgotPassword(string email);
+
+        public Task<bool> ResetPassword(string userId, string token, string newPassword);
     }
     public class AuthService : IAuthService
     {
@@ -154,7 +158,52 @@ namespace personal_health_passport.Services
             return result.Succeeded;
         }
 
-       
+        public async Task<bool> ForgotPassword(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+                return false;
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var passwordUrl = $"{_configuration["FrontendUrl"]}/reset-password" +
+                $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+
+            try
+            {
+                await _emailSender.SendPasswordResetLinkAsync(
+                    user,
+                    user.Email,
+                    passwordUrl
+                );
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true; 
+        }
+
+        public async Task<bool> ResetPassword(string id,string token,string newPassword)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+                return false;
+
+            var result = await _userManager.ResetPasswordAsync(
+                user,
+                token,
+                newPassword
+            );
+
+            return result.Succeeded;
+        }
+
+
     }
     
 }

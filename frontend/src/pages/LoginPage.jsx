@@ -97,6 +97,36 @@ function LoginPage() {
         }
     };
 
+    const handleForgotPassword = async (e) => {
+        e.preventDefault();
+        setError("");
+
+        try {
+            const response = await axios.post(
+                "https://localhost:7226/api/auth/forgot-password",
+                {
+                    email: email
+                }
+            );
+
+            console.log("Forgot password request successful");
+            setStep("forgot-password-success");
+
+        } catch (error) {
+            if (error.response) {
+                console.error(
+                    "Forgot password request failed:",
+                    error.response.data
+                );
+            } else {
+                console.error(
+                    "Could not connect to the server:",
+                    error
+                );
+            }
+        }
+    };
+
     return (
         <div className="login-page">
 
@@ -178,7 +208,7 @@ function LoginPage() {
                         <button className="back-button" type="button" onClick = {() => setStep("signup")}>
                             Dont have an account?
                         </button>
-                        <button className="back-button" type="button" >
+                        <button className="back-button" type="button" onClick = {() => setStep("forgot-password")}>
                             Forgot your password?
                         </button>
                         
@@ -222,6 +252,44 @@ function LoginPage() {
                         </>    
                     )}
 
+
+                    {step === "forgot-password" && 
+                    ( <>
+                        <h2>Reset your password</h2>
+
+                        <p className="login-subtitle">
+                            Enter your email address and we'll send you a link to reset your password.
+                        </p>
+
+                        <form onSubmit={handleForgotPassword}>
+                            <label htmlFor="forgot-email">Email</label>
+                            <input
+                                id="forgot-email"
+                                type="email"
+                                placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            <button type="submit" className="continue-button">
+                                Send Reset Link
+                            </button>
+
+                            <button className="back-button" onClick={() => setStep("login")} > ← Want to go back? </button>
+
+                        </form>
+                    </>   
+                    )}
+
+                    {step === "forgot-password-success" &&(
+                        <>
+                        <h2>Check your email</h2> 
+                        <p className="login-subtitle"> We've sent a reset link to your email address. 
+                            Please check your inbox and click the link to reset your password. </p> 
+                        <p className="login-subtitle"> 
+                            Once your email has been confirmed, you can return here and log in. </p>                        
+                        </>    
+                    )}
                 </div>
             </main>
         </div>

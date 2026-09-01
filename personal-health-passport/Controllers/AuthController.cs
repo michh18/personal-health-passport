@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using personal_health_passport.DTOs;
 using personal_health_passport.Services;
+using personal_health_passport.DTOs;
+using LoginRequest = personal_health_passport.DTOs.LoginRequest;
+using RegisterRequest = personal_health_passport.DTOs.RegisterRequest;
 
 namespace personal_health_passport.Controllers
 {
@@ -58,6 +59,35 @@ namespace personal_health_passport.Controllers
             return Ok(new
             {
                 message = "Email confirmed successfully."
+            });
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            await _authService.ForgotPassword(request.Email);
+
+            return Ok(new
+            {
+                message = "If an account exists for this email, a password reset link has been sent."
+            });
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ChangePasswordRequest request)
+        {
+            var result = await _authService.ResetPassword(
+                request.UserId,
+                request.ResetCode,
+                request.NewPassword
+            );
+
+            if (!result)
+                return BadRequest("Password reset failed.");
+
+            return Ok(new
+            {
+                message = "Password successfully reset."
             });
         }
 

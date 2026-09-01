@@ -10,7 +10,6 @@ namespace personal_health_passport.Services
         List<User> GetAllUser();
         User? GetUserById(string id);
         public Task<bool> DeleteUser(string id);
-        public Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto);
         public Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto);
 
         User? ChangeUsername(string id, string newUsername);
@@ -48,25 +47,7 @@ namespace personal_health_passport.Services
 
             return false;
         }
-        public async Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto)
-        {
-            User user = GetUserById(id);
-            if (user == null) return null;
-
-            var result = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
-
-            if (!result.Succeeded)
-            {
-                foreach(var e in result.Errors)
-                {
-                    Console.WriteLine(e.Description);
-                }
-
-                return null;
-            }
-
-            return result;
-        }
+        
 
         public async Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto)
         {
