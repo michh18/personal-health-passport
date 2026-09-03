@@ -90,33 +90,3 @@ def deidentify_text(text: str) -> str:
     text = deidentify_date_of_birth(text)
 
     return text
-
-
-if __name__ == "__main__":
-    clinic_text = """
-    Rheumatology Outpatient Clinic
-
-    Patient: John Smith
-    DOB: 15/3/1985
-    NHS number: 943 476 5919
-    Date: 1/9/2026
-
-    Dear Mr Smith,
-
-    It was a pleasure to review you in the rheumatology clinic today regarding your ongoing joint pain and morning stiffness.
-
-    You explained that the pain in your hands has worsened over the past three months. Your knee pain remains stable, while your shoulder pain has improved since your previous appointment.
-
-    On examination, there was mild swelling of the joints in both hands. There was no evidence of active inflammation in your knees.
-
-    Please continue taking hydroxychloroquine 200 mg twice daily. We will arrange repeat blood tests and review you again in three months.
-
-    Yours sincerely,
-
-    Dr Sarah Jones
-    Consultant Rheumatologist
-    """
-
-    anonymised_text = deidentify_text(clinic_text)
-
-    print(anonymised_text)
