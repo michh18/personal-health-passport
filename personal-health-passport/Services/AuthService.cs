@@ -11,17 +11,25 @@ namespace personal_health_passport.Services
     {
         public Task<string?> Login(string email, string password);
         public Task<string?> Register(string name, string email, string password);
+
+        public Task<bool> ConfirmEmail(string userId, string token);
+
+        public Task<bool> ForgotPassword(string email);
+
+        public Task<bool> ResetPassword(string userId, string token, string newPassword);
     }
     public class AuthService : IAuthService
     {
         
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ResendService _emailSender;
 
-        public AuthService(UserManager<User> userManager, IConfiguration configuration)
+        public AuthService(UserManager<User> userManager, IConfiguration configuration , ResendService emailSender)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _emailSender = emailSender;
 
         }
 
@@ -88,6 +96,9 @@ namespace personal_health_passport.Services
             if (user == null)
                 return null;
 
+            if (!user.EmailConfirmed)
+                return null;
+
             var valid = await _userManager.CheckPasswordAsync(user, password);
 
             if (!valid)
@@ -117,15 +128,82 @@ namespace personal_health_passport.Services
 
             await _userManager.AddToRoleAsync(user, "Patient");
 
-            var roles = await _userManager.GetRolesAsync(user);
+            //var roles = await _userManager.GetRolesAsync(user);
 
-            return GenerateJwtToken(user, roles);
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var confirmationUrl = $"{_configuration["FrontendUrl"]}/confirm-email" +
+                $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+
+            await _emailSender.SendConfirmationLinkAsync(
+                user,
+                user.Email,
+                confirmationUrl
+            );
+
+            return "Registration Successful";
         }
 
-        public void LogOut(string token)
+        public async Task<bool> ConfirmEmail(string userId, string token)
+        { 
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return false;
+
+            var result =
+                await _userManager.ConfirmEmailAsync(user, token);
+
+            return result.Succeeded;
+        }
+
+        public async Task<bool> ForgotPassword(string email)
         {
-            //Remove auth bearer token from frontend
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+                return false;
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var passwordUrl = $"{_configuration["FrontendUrl"]}/reset-password" +
+                $"?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+
+            try
+            {
+                await _emailSender.SendPasswordResetLinkAsync(
+                    user,
+                    user.Email,
+                    passwordUrl
+                );
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true; 
         }
+
+        public async Task<bool> ResetPassword(string id,string token,string newPassword)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+                return false;
+
+            var result = await _userManager.ResetPasswordAsync(
+                user,
+                token,
+                newPassword
+            );
+
+            return result.Succeeded;
+        }
+
+
     }
     
 }

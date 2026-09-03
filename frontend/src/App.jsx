@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ClinicalNotesPage from "./pages/ClinicalNotesPage";
 import DashboardPage from "./pages/DashboardPage";
+import LoginPage from "./pages/LoginPage";
+import ConfirmEmailPage from "./pages/ConfirmEmailPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -10,6 +13,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/upload" element={<ClinicalNotesPage />} />
         <Route path="/dashboard" element={<DashboardPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/confirm-email" element={<ConfirmEmailPage/>} />
+        <Route path="/reset-password" element={<ResetPasswordPage />}/>
       </Routes>
     </BrowserRouter>
   );

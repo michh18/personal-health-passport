@@ -9,8 +9,7 @@ namespace personal_health_passport.Services
     {
         List<User> GetAllUser();
         User? GetUserById(string id);
-        bool DeleteUser(string id);
-        public Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto);
+        public Task<bool> DeleteUser(string id);
         public Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto);
 
         User? ChangeUsername(string id, string newUsername);
@@ -36,29 +35,19 @@ namespace personal_health_passport.Services
         {
             return _userRepo.GetUserById(id);
         }
-        public bool DeleteUser(string id)
+        public async Task<bool> DeleteUser(string id)
         {
-            return _userRepo.DeleteUser(id);
-        }
-        public async Task<IdentityResult?> ChangePassword(string id, ChangePasswordRequest dto)
-        {
-            User user = GetUserById(id);
-            if (user == null) return null;
+            var user = await _userManager.FindByIdAsync(id);
 
-            var result = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
-
-            if (!result.Succeeded)
+            if (user != null)
             {
-                foreach(var e in result.Errors)
-                {
-                    Console.WriteLine(e.Description);
-                }
-
-                return null;
+                await _userManager.DeleteAsync(user);
+                return true;
             }
 
-            return result;
+            return false;
         }
+        
 
         public async Task<IdentityResult?> ChangeEmail(string id, ChangeEmailRequest dto)
         {

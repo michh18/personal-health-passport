@@ -67,37 +67,15 @@ namespace personal_health_passport.Controllers
 
         // DELETE: api/user/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult DeleteUser(string id)
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var deleted = _userService.DeleteUser(id);
+            var deleted = await _userService.DeleteUser(id);
 
             if (!deleted)
                 return NotFound();
 
             return NoContent();
-        }
-
-
-        [HttpPatch("me/password")]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest dto)
-        {
-            if (string.IsNullOrWhiteSpace(dto.NewPassword))
-                return BadRequest("Username cannot be empty.");
-
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (id == null)
-                return Unauthorized();
-
-            var result = await _userService.ChangePassword(id, dto);
-
-            if(result == null)
-            {
-                return BadRequest("Couldnt change password");
-            }
-
-            return Ok(result);
         }
 
         [HttpPatch("me/email")]
