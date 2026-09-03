@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 from nlp.models import nlp as NLP
+from nlp.deidentification import deidentify_text
 from nlp.extraction import extract_linked_relationships
 
 
@@ -34,7 +35,8 @@ class ClinicalTextResponse(BaseModel):
 @app.post("/clinical-text", response_model=ClinicalTextResponse)
 def process_clinical_text(request: ClinicalTextRequest):
 
-    doc = NLP(request.text)
+    anonymised_text = deidentify_text(request.text)
+    doc = NLP(anonymised_text)
 
     relationships = extract_linked_relationships(doc)
 
@@ -44,6 +46,6 @@ def process_clinical_text(request: ClinicalTextRequest):
         print(relationship)
 
     return ClinicalTextResponse(
-        text=request.text,
+        text=anonymised_text,
         entities=relationships
     )               
