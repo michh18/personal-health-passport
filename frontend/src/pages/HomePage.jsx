@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./css/HomePage.css";
 
 function HomePage() {
@@ -8,9 +9,12 @@ function HomePage() {
 
         <nav>
           <a href="#how-it-works">How it works</a>
-          <a href="/upload">Upload Notes</a>
-          <button className="login-button">Log in</button>
-          <button className="register-button">Register</button>
+          {/* <a href="/upload">Upload Notes</a> */}
+          <Link to="/upload">Upload Notes</Link>
+          <Link to="/login" className="login-button">Log in</Link>
+          <Link to="/register" className="register-button">Register</Link>
+          {/* <button className="login-button">Log in</button> */}
+          {/* <button className="register-button">Register</button> */}
         </nav>
       </header>
 
@@ -27,8 +31,8 @@ function HomePage() {
             </p>
 
             <div className="hero-actions">
-              <button className="primary-button">Create an account</button>
-              <button className="secondary-button">Log in</button>
+              <Link to="/register" className="primary-button">Create an account</Link>
+              <Link to="/login" className="secondary-button">Log in</Link>
             </div>
           </div>
         </section>
