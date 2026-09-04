@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+// import { useState } from "react";
 import "./css/LoginPage.css";
 import axios from "axios";
 
 function LoginPage() {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [name, setName] = useState("");
-    const [step, setStep] = useState("login");
+    const [step, setStep] = useState(
+        location.pathname === "/register" ? "signup" : "login"
+    );
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        setStep(location.pathname === "/register" ? "signup" : "login");
+        setError("");
+    }, [location.pathname]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -139,11 +150,11 @@ function LoginPage() {
                     <a href="#how-it-works">How it works</a>
                     <a href="/upload">Upload Notes</a>
 
-                    <button className="login-button">
+                    <button type="button" className="login-button"onClick={() => navigate("/login")}>
                         Log in
                     </button>
 
-                    <button className="register-button">
+                    <button type="button" className="register-button"onClick={() => navigate("/register")}>
                         Register
                     </button>
                 </nav>
@@ -205,7 +216,7 @@ function LoginPage() {
                         )}
 
 
-                        <button className="back-button" type="button" onClick = {() => setStep("signup")}>
+                        <button className="back-button" type="button" onClick={() => navigate("/register")}>
                             Dont have an account?
                         </button>
                         <button className="back-button" type="button" onClick = {() => setStep("forgot-password")}>
@@ -238,7 +249,7 @@ function LoginPage() {
                             </p>
                         )}
                         
-                        <button className="back-button" onClick={() => setStep("login")} > ← Already have an account? </button>
+                        <button className="back-button" onClick={() => navigate("/login")} > ← Already have an account? </button>
                         </>   
                     )} 
 
