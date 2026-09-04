@@ -9,12 +9,9 @@ function HomePage() {
 
         <nav>
           <a href="#how-it-works">How it works</a>
-          {/* <a href="/upload">Upload Notes</a> */}
           <Link to="/upload">Upload Notes</Link>
           <Link to="/login" className="login-button">Log in</Link>
           <Link to="/register" className="register-button">Register</Link>
-          {/* <button className="login-button">Log in</button> */}
-          {/* <button className="register-button">Register</button> */}
         </nav>
       </header>
 
