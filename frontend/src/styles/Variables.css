@@ -1,0 +1,9 @@
+:root {
+  --ink: #17313a;
+  --muted: #557079;
+  --teal: #146c73;
+  --teal-dark: #0e555c;
+  --glass: rgba(255, 255, 255, 0.48);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --shadow: 0 24px 60px rgba(35, 91, 107, 0.14);
+}

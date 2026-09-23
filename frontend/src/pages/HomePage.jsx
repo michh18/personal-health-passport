@@ -1,19 +1,11 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "./css/HomePage.css";
 
 function HomePage() {
   return (
     <div className="home-page">
-      <header className="navbar">
-        <h1 className="logo">Personal Health Passport</h1>
-
-        <nav>
-          <a href="#how-it-works">How it works</a>
-          <Link to="/upload">Upload Notes</Link>
-          <Link to="/login" className="login-button">Log in</Link>
-          <Link to="/register" className="register-button">Register</Link>
-        </nav>
-      </header>
+      <Navbar variant="marketing" />
 
       <main>
         <section className="hero">

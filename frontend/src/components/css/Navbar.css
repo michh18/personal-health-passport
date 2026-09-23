@@ -1,0 +1,135 @@
+@import "../../styles/variables.css";
+
+.navbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1180px, calc(100% - 48px));
+  margin: 22px auto 0;
+  padding: 14px 18px 14px 24px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(50, 90, 130, 0.11),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo {
+  margin: 0;
+  color: var(--teal-dark);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  letter-spacing: -0.02em;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Plain nav links (marketing variant) */
+.navbar nav > a:not(.login-button):not(.register-button):not(.back-link) {
+  padding: 9px 10px;
+  color: #35545d;
+  border-radius: 8px;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.navbar nav > a:not(.login-button):not(.register-button):not(.back-link):hover {
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--teal-dark);
+}
+
+/* Back link (auth variant) */
+.navbar .back-link {
+  padding: 9px 10px;
+  color: var(--muted);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.navbar .back-link:hover {
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--teal-dark);
+}
+
+/* Log in / Register links */
+.login-button,
+.register-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.register-button {
+  background: var(--teal);
+  color: white;
+  border: 1px solid var(--teal);
+  box-shadow: 0 6px 16px rgba(20, 108, 115, 0.18);
+}
+
+.register-button:hover {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+  box-shadow: 0 8px 20px rgba(20, 108, 115, 0.24);
+}
+
+.login-button {
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--teal-dark);
+  border: 1px solid rgba(20, 108, 115, 0.45);
+  box-shadow: none;
+}
+
+.login-button:hover {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: var(--teal);
+}
+
+/* Keyboard navigation */
+.login-button:focus-visible,
+.register-button:focus-visible,
+.navbar nav > a:focus-visible {
+  outline: 3px solid rgba(20, 108, 115, 0.22);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .navbar nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
