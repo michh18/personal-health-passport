@@ -1,18 +1,11 @@
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "./css/HomePage.css";
 
 function HomePage() {
   return (
     <div className="home-page">
-      <header className="navbar">
-        <h1 className="logo">Personal Health Passport</h1>
-
-        <nav>
-          <a href="#how-it-works">How it works</a>
-          <a href="/upload">Upload Notes</a>
-          <button className="login-button">Log in</button>
-          <button className="register-button">Register</button>
-        </nav>
-      </header>
+      <Navbar variant="marketing" />
 
       <main>
         <section className="hero">
@@ -27,8 +20,8 @@ function HomePage() {
             </p>
 
             <div className="hero-actions">
-              <button className="primary-button">Create an account</button>
-              <button className="secondary-button">Log in</button>
+              <Link to="/register" className="primary-button">Create an account</Link>
+              <Link to="/login" className="secondary-button">Log in</Link>
             </div>
           </div>
         </section>
