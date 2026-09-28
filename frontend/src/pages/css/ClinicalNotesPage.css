@@ -81,3 +81,72 @@
   color: var(--text-h);
   font-weight: 600;
 }
+
+.review-note {
+  margin-top: 4px;
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.result td.entity-actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.edit-button,
+.delete-button,
+.save-button,
+.cancel-button {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+}
+
+.edit-button:hover,
+.cancel-button:hover {
+  background: #f5f5f5;
+}
+
+.save-button {
+  color: #fff;
+  background: #17803d;
+  border-color: #17803d;
+}
+
+.save-button:hover {
+  background: #146c34;
+}
+
+.save-button:disabled,
+.cancel-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.delete-button {
+  color: #b42318;
+  border-color: #fecdca;
+  background: #fef3f2;
+}
+
+.delete-button:hover {
+  background: #fee4e2;
+}
+
+.editing-row td {
+  vertical-align: middle;
+  background: #fafafa;
+}
+
+.editing-row input {
+  width: 100%;
+  padding: 6px 8px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
