@@ -14,6 +14,7 @@ function App() {
         <Route path="/upload" element={<ClinicalNotesPage />} />
         <Route path="/dashboard" element={<DashboardPage/>} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/register" element={<LoginPage initialStep="signup" />} />
         <Route path="/confirm-email" element={<ConfirmEmailPage/>} />
         <Route path="/reset-password" element={<ResetPasswordPage />}/>
       </Routes>

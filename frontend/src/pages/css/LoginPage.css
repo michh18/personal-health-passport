@@ -1,22 +1,12 @@
-:root {
-  --ink: #17313a;
-  --muted: #557079;
-  --teal: #146c73;
-  --teal-dark: #0e555c;
-  --glass: rgba(255, 255, 255, 0.48);
-  --glass-border: rgba(255, 255, 255, 0.72);
-  --shadow: 0 24px 60px rgba(35, 91, 107, 0.14);
-}
-
-/* Page shell — matches homepage's background treatment for continuity */
 .login-page {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 10% 12%, rgba(100, 210, 196, 0.35), transparent 28rem),
-    radial-gradient(circle at 88% 30%, rgba(127, 180, 224, 0.3), transparent 30rem),
-    linear-gradient(145deg, #effaf8 0%, #f4f8fc 48%, #eaf4f8 100%);
+    radial-gradient(circle at 8% 10%, rgba(168, 85, 247, 0.30), transparent 30rem),
+    radial-gradient(circle at 92% 28%, rgba(34, 211, 238, 0.16), transparent 30rem),
+    radial-gradient(circle at 78% 4%, rgba(236, 72, 153, 0.13), transparent 24rem),
+    var(--background);
   color: var(--ink);
 }
 
@@ -32,100 +22,6 @@
   z-index: 1;
 }
 
-/* Navbar — floating glass pill, matches homepage exactly */
-.login-page .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: min(1180px, calc(100% - 48px));
-  margin: 22px auto 0;
-  padding: 14px 18px 14px 24px;
-  background: rgba(255, 255, 255, 0.56);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  box-shadow: 0 12px 35px rgba(50, 90, 130, 0.11),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-}
-
-.login-page .logo {
-  margin: 0;
-  color: var(--teal-dark);
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  letter-spacing: -0.02em;
-}
-
-.login-page .navbar nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.login-page .navbar a {
-  padding: 9px 10px;
-  color: #35545d;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 180ms ease, color 180ms ease;
-}
-
-.login-page .navbar a:hover {
-  background: rgba(255, 255, 255, 0.55);
-  color: var(--teal-dark);
-}
-
-.login-page .navbar button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 9px 16px;
-  border-radius: 10px;
-  font: inherit;
-  font-weight: 650;
-  line-height: 1;
-  cursor: pointer;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.login-page .login-button {
-  background: rgba(255, 255, 255, 0.4);
-  color: var(--teal-dark);
-  border: 1px solid rgba(20, 108, 115, 0.45);
-  box-shadow: none;
-}
-
-.login-page .login-button:hover {
-  background: rgba(255, 255, 255, 0.78);
-  border-color: var(--teal);
-}
-
-.login-page .register-button {
-  background: var(--teal);
-  color: white;
-  border: 1px solid var(--teal);
-  box-shadow: 0 6px 16px rgba(20, 108, 115, 0.18);
-}
-
-.login-page .register-button:hover {
-  background: var(--teal-dark);
-  border-color: var(--teal-dark);
-  box-shadow: 0 8px 20px rgba(20, 108, 115, 0.24);
-}
-
-.login-page .login-button:focus-visible,
-.login-page .register-button:focus-visible,
-.login-page .navbar a:focus-visible {
-  outline: 3px solid rgba(20, 108, 115, 0.22);
-  outline-offset: 3px;
-}
-
-/* Main content */
 .login-content {
   min-height: calc(100vh - 90px);
   display: flex;
@@ -134,23 +30,22 @@
   padding: 40px 20px;
 }
 
-/* Glass card */
 .login-card {
   width: 100%;
   max-width: 420px;
   padding: 40px;
   background: var(--glass);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
-  box-shadow: var(--shadow), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 60px rgba(168, 85, 247, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   box-sizing: border-box;
 }
 
 .login-card h2 {
   margin: 0 0 10px;
-  color: #153a43;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 650;
   letter-spacing: -0.02em;
@@ -164,13 +59,12 @@
 }
 
 .login-error {
-  color: #d64545;
-  font-size: 14px;
   margin-top: 10px;
+  color: #fca5a5;
+  font-size: 14px;
   text-align: center;
 }
 
-/* Form */
 .login-card form {
   display: flex;
   flex-direction: column;
@@ -190,60 +84,61 @@
   width: 100%;
   padding: 13px 15px;
   margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
-  border: 1px solid rgba(20, 108, 115, 0.3);
-  background: rgba(255, 255, 255, 0.45);
-  color: #1c2b3a;
   outline: none;
   font-size: 15px;
-  backdrop-filter: blur(10px);
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .login-card input:focus {
-  border: 1px solid var(--teal);
-  box-shadow: 0 0 0 3px rgba(20, 108, 115, 0.15);
-  outline: none;
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
 }
 
 .login-card input::placeholder {
-  color: #8796a5;
+  color: #6b7196;
 }
 
-/* Continue / login button */
 .continue-button {
   width: 100%;
   padding: 13px;
   margin-top: 5px;
   border: none;
   border-radius: 10px;
-  background: var(--teal);
-  color: white;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: #ffffff;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(20, 108, 115, 0.18);
-  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+  transition: filter 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .continue-button:hover {
-  background: var(--teal-dark);
-  box-shadow: 0 8px 20px rgba(20, 108, 115, 0.24);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.35);
   transform: translateY(-1px);
 }
 
+.continue-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .continue-button:focus-visible {
-  outline: 3px solid rgba(20, 108, 115, 0.22);
+  outline: 3px solid rgba(94, 234, 212, 0.45);
   outline-offset: 3px;
 }
 
-/* Back button */
 .back-button {
   display: block;
   margin: 20px auto 0;
   border: none;
   background: transparent;
-  color: #47779e;
+  color: var(--accent-mint);
   cursor: pointer;
   font-size: 14px;
 }
@@ -253,16 +148,6 @@
 }
 
 @media (max-width: 760px) {
-  .login-page .navbar {
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .login-page .navbar nav {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-
   .login-card {
     padding: 30px 24px;
   }

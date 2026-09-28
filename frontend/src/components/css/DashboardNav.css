@@ -6,8 +6,12 @@
     flex-direction: column;
     height: 100vh;
     padding: 32px 20px;
-    color: #ffffff;
-    background-color: #086972;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 20% 10%, rgba(168, 85, 247, 0.16), transparent 18rem),
+        rgba(17, 19, 42, 0.96);
+    border-right: 1px solid var(--glass-border);
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.18);
     box-sizing: border-box;
 }
 
@@ -15,6 +19,8 @@
     margin: 0 12px 40px;
     color: #ffffff;
     font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     text-align: left;
 }
 
@@ -31,32 +37,46 @@
 .sidebar-logout {
     display: block;
     padding: 12px 14px;
-    color: #e8f5f5;
+    color: var(--muted);
     text-align: left;
     text-decoration: none;
-    border-radius: 8px;
-    transition:
-        color 0.2s ease,
-        background-color 0.2s ease;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
 }
 
-.sidebar-links a:hover,
+.sidebar-links a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
 .sidebar-links a.active {
-    color: #086972;
-    background-color: #ffffff;
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(236, 72, 153, 0.12));
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: inset 3px 0 0 var(--accent-purple), 0 6px 20px rgba(168, 85, 247, 0.08);
 }
 
 .sidebar-logout {
     margin-top: auto;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
 }
 
 .sidebar-logout:hover {
-    background-color: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    background: rgba(236, 72, 153, 0.08);
+    border-color: rgba(236, 72, 153, 0.15);
 }
 
 .sidebar-links a:focus-visible,
 .sidebar-logout:focus-visible {
-    outline: 3px solid rgba(255, 255, 255, 0.6);
+    outline: 3px solid rgba(94, 234, 212, 0.4);
     outline-offset: 3px;
 }
 
@@ -67,6 +87,8 @@
         height: auto;
         flex-basis: auto;
         padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
     }
 
     .sidebar-logo {
