@@ -1,58 +1,184 @@
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+.authenticated-layout:has(.clinical-notes-main) {
+  background-color: var(--background);
 }
 
-#input-text form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 700px;
-  margin: 40px auto;
+.authenticated-main.clinical-notes-main {
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(700px 520px at 6% -8%, rgba(168, 85, 247, 0.28), transparent 65%),
+    radial-gradient(640px 480px at 100% 100%, rgba(34, 211, 238, 0.16), transparent 65%),
+    radial-gradient(520px 380px at 96% 4%, rgba(236, 72, 153, 0.12), transparent 65%),
+    var(--background);
 }
 
-#input-text textarea {
-  padding: 12px;
+#clinical-notes-heading {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+#clinical-notes-heading > div {
+  max-width: 650px;
+}
+
+#clinical-notes-heading .page-label {
+  display: inline-block;
+  margin: 0 0 20px;
+  padding: 4px 12px;
+  color: #d8b4fe;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(168, 85, 247, 0.16);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 999px;
+}
+
+#clinical-notes-heading h1 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: 2.5rem;
+  letter-spacing: -0.03em;
+}
+
+#clinical-notes-heading>div>p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+#clinical-notes-content {
+  width: min(100%, 800px);
+  margin: 0 auto;
+}
+
+#clinical-notes-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 28px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-sizing: border-box;
+}
+
+#clinical-notes-content label {
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#clinical-notes-content textarea {
+  width: 100%;
+  min-height: 190px;
+  padding: 16px;
+  color: var(--ink);
   font: inherit;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  outline: none;
   resize: vertical;
+  box-sizing: border-box;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 
-#input-text button {
-  padding: 10px 16px;
+#clinical-notes-content textarea::placeholder {
+  color: #6b7196;
+}
+
+#clinical-notes-content textarea:focus {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18);
+}
+
+#clinical-notes-content form>button {
+  align-self: flex-end;
+  min-width: 145px;
+  padding: 11px 20px;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 650;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
+  transition:
+    filter 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
-#input-text button:disabled {
+#clinical-notes-content form>button:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(236, 72, 153, 0.3);
+}
+
+#clinical-notes-content form>button:disabled {
   cursor: wait;
   opacity: 0.65;
 }
 
-.error {
-  max-width: 700px;
-  margin: 0 auto 20px;
+#clinical-notes-content form>button:focus-visible {
+  outline: 3px solid rgba(94, 234, 212, 0.45);
+  outline-offset: 3px;
+}
+
+.clinical-notes-main .error {
+  max-width: none;
+  margin: 20px 0 0;
   padding: 12px 16px;
-  color: #b42318;
-  background: #fef3f2;
-  border: 1px solid #fecdca;
-  border-radius: 8px;
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 10px;
   text-align: left;
 }
 
 .result {
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  max-width: none;
+  margin: 32px 0 0;
+  padding: 28px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.result h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.review-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.result > p:not(.review-note) {
+  color: var(--muted);
 }
 
 .result p {
@@ -60,7 +186,7 @@
 }
 
 .result .table-wrapper {
-  margin-top: 16px;
+  margin-top: 24px;
   overflow-x: auto;
 }
 
@@ -72,20 +198,34 @@
 
 .result th,
 .result td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border);
+  padding: 13px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   vertical-align: top;
 }
 
 .result th {
-  color: var(--text-h);
-  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.review-note {
-  margin-top: 4px;
-  color: var(--text-h);
+.result td {
+  color: var(--ink);
   font-size: 0.9rem;
+}
+
+.result tbody tr {
+  transition: background-color 180ms ease;
+}
+
+.result tbody tr:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.result tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .result td.entity-actions {
@@ -100,26 +240,38 @@
 .cancel-button {
   padding: 6px 12px;
   font: inherit;
-  font-size: 0.85rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.edit-button,
+.cancel-button {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .edit-button:hover,
 .cancel-button:hover {
-  background: #f5f5f5;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .save-button {
-  color: #fff;
-  background: #17803d;
-  border-color: #17803d;
+  color: #ffffff;
+  background: rgba(45, 212, 191, 0.18);
+  border: 1px solid rgba(45, 212, 191, 0.35);
 }
 
 .save-button:hover {
-  background: #146c34;
+  background: rgba(45, 212, 191, 0.28);
+  border-color: rgba(45, 212, 191, 0.5);
 }
 
 .save-button:disabled,
@@ -129,24 +281,61 @@
 }
 
 .delete-button {
-  color: #b42318;
-  border-color: #fecdca;
-  background: #fef3f2;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.22);
 }
 
 .delete-button:hover {
-  background: #fee4e2;
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
 .editing-row td {
   vertical-align: middle;
-  background: #fafafa;
+  background: rgba(168, 85, 247, 0.06);
 }
 
 .editing-row input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 8px 10px;
+  color: var(--ink);
   font: inherit;
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 7px;
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.editing-row input:focus {
+  border-color: var(--accent-purple);
+  box-shadow:
+    0 0 0 3px rgba(168, 85, 247, 0.18);
+}
+
+@media (max-width: 768px) {
+  #clinical-notes-heading {
+    justify-content: flex-start;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  #center h1 {
+    font-size: 2rem;
+  }
+
+  #clinical-notes-content form,
+  .result {
+    padding: 20px;
+  }
+
+  #clinical-notes-content form>button {
+    align-self: stretch;
+
+    width: 100%;
+  }
 }

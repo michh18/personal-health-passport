@@ -116,8 +116,8 @@ function ClinicalNotesPage() {
     return (
         <div className="authenticated-layout">
             <DashboardNav />
-            <main className="authenticated-main">
-                <section id="center">
+            <main className="authenticated-main clinical-notes-main">
+                <section id="clinical-notes-heading">
                     <div>
                         <p className="page-label">Clinical notes</p>
                         <h1>Upload clinical notes</h1>
@@ -127,7 +127,7 @@ function ClinicalNotesPage() {
                     </div>
                 </section>
 
-                <section id="input-text">
+                <section id="clinical-notes-content">
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="clinical-notes">
                             Enter your clinical notes:
